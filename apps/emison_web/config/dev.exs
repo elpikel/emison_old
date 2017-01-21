@@ -38,6 +38,6 @@ config :emison_web, EmisonWeb.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "hlethman",
   password: "",
-  database: "emison_web_dev",
+  database: "emison_platform_dev",
   hostname: "localhost",
   pool_size: 10

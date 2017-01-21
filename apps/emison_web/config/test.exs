@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :emison_web, EmisonWeb.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "emison_web_test",
+  username: "hlathman",
+  password: "",
+  database: "emison_platform_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
