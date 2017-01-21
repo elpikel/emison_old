@@ -1,18 +1,30 @@
 defmodule Auth do
-  @moduledoc """
-  Documentation for Auth.
+  @moduledoc ~S"""
+  Authentication system for the platform.
+  See `register/1` for creating an account and `sign_in/2` for signing in.
   """
 
-  @doc """
-  Hello world.
+  alias Auth.{Employee, Repo}
 
-  ## Examples
+  def register_employee(params) do
+    Employee.build(params)
+    |> Repo.insert()
+  end
 
-      iex> Auth.hello
-      :world
+  def sign_in_employee(email, password) do
+    employee = Repo.get_by(Employee, email: email)
+    do_sign_in(employee, password)
+  end
 
-  """
-  def hello do
-    :world
+  defp do_sign_in(%Employee{password_hash: password_hash} = employee, password) do
+    if Comeonin.Bcrypt.checkpw(password, password_hash) do
+      {:ok, employee}
+    else
+      {:error, :unauthorized}
+    end
+  end
+  defp do_sign_in(nil, _) do
+    Comeonin.Bcrypt.dummy_checkpw()
+    {:error, :not_found}
   end
 end
