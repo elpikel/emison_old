@@ -12,7 +12,7 @@ config :logger, level: :warn
 # Configure your database
 config :emison_web, EmisonWeb.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "hlathman",
+  username: "hlethman",
   password: "",
   database: "emison_platform_test",
   hostname: "localhost",

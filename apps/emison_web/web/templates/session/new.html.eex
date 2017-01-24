@@ -1,0 +1,48 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @elpikel
+ Watch 13
+  Star 215
+  Fork 23 wojtekmach/acme_bank
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
+Branch: master Find file Copy pathacme_bank/apps/bank_web/web/templates/session/new.html.eex
+486c928  on 1 Aug 2016
+@wojtekmach wojtekmach auth,bank_web: Integrate Auth to BankWeb
+1 contributor
+RawBlameHistory
+30 lines (24 sloc)  857 Bytes
+<h2>Sign in</h2>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+      <div class="form-group">
+        <%= label f, :email %><br/>
+        <%= text_input f, :email, class: "form-control" %>
+        <%= error_tag f, :email %>
+      </div>
+
+      <div class="form-group">
+        <%= label f, :password %><br/>
+        <%= password_input f, :password, class: "form-control" %>
+        <%= error_tag f, :password %>
+      </div>
+
+      <div class="form-group">
+        <%= submit "Sign in", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<h2>[Debug] Sign in</h2>
+
+<%= for customer <- @customers do %>
+  <%= link "Sign in as #{customer.username}", to: session_path(@conn, :sign_in_as, customer.username), method: :post, class: "btn btn-default" %>
+<% end %>
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help

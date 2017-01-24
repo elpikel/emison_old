@@ -17,6 +17,11 @@ defmodule EmisonWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    get "/sign_in", SessionController, :new
+    post "/sign_in", SessionController, :create
+    post "/sign_in_as/:username", SessionController, :sign_in_as
+    get "/sign_out", SessionController, :sign_out
   end
 
   # Other scopes may use custom stacks.

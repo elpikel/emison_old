@@ -1,18 +1,19 @@
 defmodule Local do
   @moduledoc """
-  Documentation for Local.
+    Basic functionality for Local.
   """
 
   @doc """
-  Hello world.
+  Find employee
 
   ## Examples
 
-      iex> Local.hello
-      :world
+      
 
   """
-  def hello do
-    :world
+  def find_employee!(username: username) do
+    #employee with local data
   end
+
+
 end
