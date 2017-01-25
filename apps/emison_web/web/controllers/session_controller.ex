@@ -1,9 +1,17 @@
 defmodule EmisonWeb.SessionController do
   use EmisonWeb.Web, :controller
-  
+
+  plug :put_layout, "simple.html"
+
+  def new(conn, _params) do
+    render conn, "new.html"
+  end
+
   def create(conn, %{"session" => %{"email" => email, "password" => password}}) do
-    case Auth.sign_in_employee(email, password) do
-      {:ok, employee} ->
+    case Auth.sign_in(email, password) do
+      {:ok, account} ->
+        employee = Local.find_employee!(email: email)
+
         conn
         |> put_session(:employee, employee)
         |> redirect(to: "/")
