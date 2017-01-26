@@ -8,12 +8,10 @@ defmodule Local do
 
   ## Examples
 
-      
+
 
   """
-  def find_employee!(username: username) do
+  def find_employee!(email: email) do
     #employee with local data
   end
-
-
 end

@@ -9,7 +9,8 @@
                     <h1 class="Hdg2 u-mb1 u-fwN">Welcome to SayLight</h1>
                     <p></p>
                 </header>
-                <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+                <%= form_for @conn, session_path(@conn, :create), [as: :employee], fn f -> %>
+                    <div class="Notification Notification--error u-mb2">Email or password is incorrect</div>
                     <div class="AuthForm-item">
                         <%= text_input f, :email, class: "Field", autocorrect: "off", placeholder: "Email" %>
                         <%= error_tag f, :email %>
