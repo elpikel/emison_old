@@ -8,7 +8,7 @@ defmodule LocalTest do
   end
 
   test "register: success" do
-    local = Local.create(account_id: 1, local_data: %{name: "local", city: "city", nip: "nip"})
+    local = Local.register(account_id: 1, local_data: %{name: "local", city: "city", nip: "nip"})
 
     assert local.city == "city"
     assert local.name == "local"

@@ -16,7 +16,7 @@ defmodule Local do
     #employee with local data
   end
 
-  def create(account_id: account_id, local_data: local_data) do
+  def register(account_id: account_id, local_data: local_data) do
     {:ok, local_data} = Data.build(local_data)
     |> Repo.insert()
 
