@@ -19,7 +19,7 @@ defmodule Local.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger, :ecto, :postgrex],
+    [extra_applications: [:logger, :ecto, :postgrex, :auth],
      mod: {Local.Application, []}]
   end
 
@@ -39,7 +39,8 @@ defmodule Local.Mixfile do
   defp deps do
     [
       {:ecto, "~> 2.0"},
-      {:postgrex, "~> 0.11"}
+      {:postgrex, "~> 0.11"},
+      {:auth, in_umbrella: true}
     ]
   end
 end

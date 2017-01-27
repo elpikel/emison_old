@@ -16,13 +16,36 @@ defmodule Local do
     #employee with local data
   end
 
-  def register(account_id: account_id, local_data: local_data) do
-    {:ok, local_data} = Data.build(local_data)
-    |> Repo.insert()
+  def register(registration_data) do
+    with {:ok, local_data} <- save_local(registration_data),
+         {:ok, account} <- register_employee(registration_data),
+         {:ok, employee} <- save_employee(account.id, local_data.id) do
+      local_data
+    else
+      error ->
+        error
+    end
+  end
 
-    {:ok, employee} = Employee.build(%{auth_account_id: account_id, local_data_id: local_data.id})
-    |> Repo.insert()
+  defp save_local(registration_data) do
+    Data.build(%{
+      name: registration_data.name,
+      city: registration_data.city,
+      nip: registration_data.nip
+    }) |> Repo.insert()
+  end
 
-    local_data
+  defp register_employee(registration_data) do
+    Auth.register(%{
+      email: registration_data.email,
+      password: registration_data.password
+      })
+  end
+
+  defp save_employee(account_id, local_data_id) do
+    Employee.build(%{
+      auth_account_id: account_id,
+      local_data_id: local_data_id
+    }) |> Repo.insert()
   end
 end

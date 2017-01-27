@@ -15,8 +15,8 @@ defmodule Local.Data do
     changeset(%Local.Data{}, params)
   end
 
-  def changeset(account, params \\ %{}) do
-    cast(account, params, ~w(name city nip))
+  def changeset(local, params \\ %{}) do
+    cast(local, params, ~w(name city nip))
     |> validate_required([:name, :city, :nip])
   end
 end
